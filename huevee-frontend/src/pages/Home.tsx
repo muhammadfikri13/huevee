@@ -33,51 +33,51 @@ function Home() {
   return (
     <div className="min-h-screen bg-gray-100 p-6">
       <div className="flex justify-between items-center mb-6">
-  <h1 className="text-3xl font-bold text-indigo-600">🎨 Huevee Palettes</h1>
-  <div className="space-x-4">
-    {loggedIn ? (
-      <>
-        <button
-          onClick={() => navigate('/create')}
-          className="px-4 py-2 bg-green-600 text-white rounded hover:bg-green-700"
-        >
-          Create Palette
-        </button>
-        <button
-          onClick={() => navigate('/dashboard')}
-          className="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700"
-        >
-          Manage Palettes
-        </button>
-        <button
-          onClick={() => {
-            removeToken();
-            navigate('/');
-            window.location.reload(); // refresh UI
-          }}
-          className="px-4 py-2 bg-red-600 text-white rounded hover:bg-red-700"
-        >
-          Logout
-        </button>
-      </>
-    ) : (
-      <>
-        <button
-          onClick={() => navigate('/login')}
-          className="px-4 py-2 bg-indigo-600 text-white rounded hover:bg-indigo-700"
-        >
-          Login
-        </button>
-        <button
-          onClick={() => navigate('/register')}
-          className="px-4 py-2 bg-white text-indigo-600 border border-indigo-600 rounded hover:bg-indigo-50"
-        >
-          Register
-        </button>
-      </>
-    )}
-  </div>
-</div>
+        <h1 className="text-3xl font-bold text-indigo-600">🎨 Huevee Palettes</h1>
+        <div className="space-x-4">
+          {loggedIn ? (
+            <>
+              <button
+                onClick={() => navigate('/create')}
+                className="px-4 py-2 bg-green-600 text-white rounded hover:bg-green-700"
+              >
+                Create Palette
+              </button>
+              <button
+                onClick={() => navigate('/dashboard')}
+                className="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700"
+              >
+                Manage Palettes
+              </button>
+              <button
+                onClick={() => {
+                  removeToken();
+                  navigate('/');
+                  window.location.reload(); // refresh UI
+                }}
+                className="px-4 py-2 bg-red-600 text-white rounded hover:bg-red-700"
+              >
+                Logout
+              </button>
+            </>
+          ) : (
+            <>
+              <button
+                onClick={() => navigate('/login')}
+                className="px-4 py-2 bg-indigo-600 text-white rounded hover:bg-indigo-700"
+              >
+                Login
+              </button>
+              <button
+                onClick={() => navigate('/register')}
+                className="px-4 py-2 bg-white text-indigo-600 border border-indigo-600 rounded hover:bg-indigo-50"
+              >
+                Register
+              </button>
+            </>
+          )}
+        </div>
+      </div>
       {loading ? (
         <p>Loading palettes...</p>
       ) : palettes.length === 0 ? (

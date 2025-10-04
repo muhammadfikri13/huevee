@@ -12,10 +12,10 @@ export async function createPalette(req, res) {
     );
     const paletteId = result.rows[0].id;
 
-    for (let i = 0; i < colors.length; i++) {
+    for (const color of colors) {
       await pool.query(
         'INSERT INTO colors (palette_id, hex_code, position) VALUES ($1, $2, $3)',
-        [paletteId, colors[i], i]
+        [paletteId, color.hex, color.position]
       );
     }
 
@@ -89,7 +89,7 @@ export async function updatePalette(req, res) {
     for (let i = 0; i < colors.length; i++) {
       await pool.query(
         'INSERT INTO colors (palette_id, hex_code, position) VALUES ($1, $2, $3)',
-        [paletteId, colors[i], i]
+        [paletteId, colors[i].hex, colors[i].position]
       );
     }
 
@@ -116,6 +116,29 @@ export async function deletePalette(req, res) {
     res.json({ message: 'Palette deleted successfully!' });
   } catch (err) {
     console.error('Delete palette error:', err);
+    res.status(500).json({ error: 'Server error' });
+  }
+}
+
+
+// Get palettes owned by the logged-in user
+export async function getUserPalettes(req, res) {
+  const userId = req.user.userId;
+
+  try {
+    const result = await pool.query(
+      `SELECT p.id, p.title, p.theme, p.description, p.created_at,
+              json_agg(json_build_object('hex', c.hex_code, 'position', c.position) ORDER BY c.position) AS colors
+       FROM palettes p
+       LEFT JOIN colors c ON p.id = c.palette_id
+       WHERE p.user_id = $1
+       GROUP BY p.id`,
+      [userId]
+    );
+
+    res.json(result.rows);
+  } catch (err) {
+    console.error('Get user palettes error:', err);
     res.status(500).json({ error: 'Server error' });
   }
 }
