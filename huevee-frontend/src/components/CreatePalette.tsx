@@ -1,12 +1,15 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { getToken } from '../utils/auth';
+import { ChromePicker } from 'react-color';
+import type { ColorResult } from 'react-color';
 
 function CreatePalette() {
   const [title, setTitle] = useState('');
   const [theme, setTheme] = useState('');
   const [description, setDescription] = useState('');
-  const [colors, setColors] = useState<string[]>(['', '', '', '', '']);
+  const [colors, setColors] = useState<string[]>(['#ffffff', '#ffffff', '#ffffff', '#ffffff', '#ffffff']);
+  const [activePicker, setActivePicker] = useState<number | null>(null);
   const navigate = useNavigate();
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -19,8 +22,8 @@ function CreatePalette() {
       title,
       theme,
       description,
-      colors: colors.map((hex, index) => ({ 
-        hex: hex.trim(), 
+      colors: colors.map((hex, index) => ({
+        hex: hex.trim(),
         position: index,
       })),
     };
@@ -39,6 +42,12 @@ function CreatePalette() {
     } else {
       alert('Failed to create palette');
     }
+  };
+
+  const handleColorChange = (color: ColorResult, index: number) => {
+    const newColors = [...colors];
+    newColors[index] = color.hex;
+    setColors(newColors);
   };
 
   return (
@@ -66,23 +75,36 @@ function CreatePalette() {
           value={description}
           onChange={(e) => setDescription(e.target.value)}
         />
+
         <div className="grid grid-cols-5 gap-2">
           {colors.map((hex, index) => (
-            <input
-              key={index}
-              type="text"
-              placeholder="#HEX"
-              className="p-2 border rounded text-center"
-              value={hex}
-              onChange={(e) => {
-                const newColors = [...colors];
-                newColors[index] = e.target.value;
-                setColors(newColors);
-              }}
-              required
-            />
+            <div key={index} className="relative">
+              <div
+                className="w-full h-10 rounded cursor-pointer border"
+                style={{ backgroundColor: hex }}
+                onClick={() => setActivePicker(index)}
+                title="Click to pick color"
+              />
+              <p className="text-center text-sm mt-1">{hex}</p>
+              {activePicker === index && (
+                <div className="absolute z-10 mt-2">
+                  <ChromePicker
+                    color={hex}
+                    onChangeComplete={(color) => handleColorChange(color, index)}
+                  />
+                  <button
+                    type="button"
+                    className="mt-2 bg-gray-200 px-2 py-1 rounded text-sm"
+                    onClick={() => setActivePicker(null)}
+                  >
+                    Close
+                  </button>
+                </div>
+              )}
+            </div>
           ))}
         </div>
+
         <button
           type="submit"
           className="w-full bg-indigo-600 text-white py-2 rounded hover:bg-indigo-700"

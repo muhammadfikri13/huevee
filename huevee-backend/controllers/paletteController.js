@@ -34,7 +34,8 @@ export async function getAllPalettes(req, res) {
               json_agg(json_build_object('hex', c.hex_code, 'position', c.position) ORDER BY c.position) AS colors
        FROM palettes p
        LEFT JOIN colors c ON p.id = c.palette_id
-       GROUP BY p.id`
+       GROUP BY p.id
+       ORDER BY p.created_at DESC`
     );
     res.json(result.rows);
   } catch (err) {
