@@ -8,6 +8,7 @@ import Home from './pages/Home.tsx' // Placeholder untuk halaman dashboard
 import CreatePalette from './components/CreatePalette.tsx'
 import Dashboard from './pages/Dashboard.tsx'
 import EditPalette from './pages/EditPalette.tsx'
+import ManageUsers from './pages/ManageUsers.tsx'
 
 const router = createBrowserRouter([
   {
@@ -19,6 +20,7 @@ const router = createBrowserRouter([
       { path: '', element: <Home /> }, // Placeholder untuk halaman dashboard
       { path: 'dashboard', element: <Dashboard /> },
       { path: 'edit/:id', element: <EditPalette /> },
+      { path: 'manage-users', element: <ManageUsers /> },
     ],
   },
 ])

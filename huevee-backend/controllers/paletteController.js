@@ -101,15 +101,20 @@ export async function updatePalette(req, res) {
   }
 }
 
-// Delete palette (auth required)
+// Delete palette (auth required) - root can delete any palette, users can only delete their own
 export async function deletePalette(req, res) {
   const paletteId = req.params.id;
   const userId = req.user.userId;
+  const userRole = req.user.role;
 
   try {
     const check = await pool.query('SELECT user_id FROM palettes WHERE id = $1', [paletteId]);
     if (check.rows.length === 0) return res.status(404).json({ error: 'Palette not found' });
-    if (check.rows[0].user_id !== userId) return res.status(403).json({ error: 'Unauthorized' });
+    
+    // Allow deletion if user is root or if they own the palette
+    if (userRole !== 'root' && check.rows[0].user_id !== userId) {
+      return res.status(403).json({ error: 'Unauthorized' });
+    }
 
     await pool.query('DELETE FROM colors WHERE palette_id = $1', [paletteId]);
     await pool.query('DELETE FROM palettes WHERE id = $1', [paletteId]);

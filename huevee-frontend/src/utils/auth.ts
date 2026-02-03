@@ -1,3 +1,10 @@
+import { jwtDecode } from 'jwt-decode';
+
+interface DecodedToken {
+  userId: number;
+  role: string;
+}
+
 export function setToken(token: string) {
   localStorage.setItem('token', token);
 }
@@ -12,4 +19,20 @@ export function removeToken() {
 
 export function isLoggedIn(): boolean {
   return !!getToken();
+}
+
+export function getUserRole(): string | null {
+  const token = getToken();
+  if (!token) return null;
+  try {
+    const decoded = jwtDecode<DecodedToken>(token);
+    return decoded.role || null;
+  } catch (err) {
+    console.error('Error decoding token:', err);
+    return null;
+  }
+}
+
+export function isRoot(): boolean {
+  return getUserRole() === 'root';
 }
