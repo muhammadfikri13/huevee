@@ -3,6 +3,7 @@ import cors from 'cors';
 import dotenv from 'dotenv';
 import authRoutes from './routes/auth.js';
 import paletteRoutes from './routes/palettes.js';
+import userRoutes from './routes/users.js';
 
 dotenv.config();
 
@@ -12,7 +13,7 @@ app.use(express.json());
 
 // Routes
 app.use('/api/palettes', paletteRoutes);
-
+app.use('/api/users', userRoutes);
 app.use('/api/auth', authRoutes);
 
 const PORT = process.env.PORT || 5000;
