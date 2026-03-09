@@ -19,7 +19,7 @@ function Home() {
   const rootUser = isRoot();
 
   useEffect(() => {
-    fetch('http://localhost:5000/api/palettes')
+    fetch('http://13.219.3.29:8080/api/palettes')
       .then((res) => res.json())
       .then((data) => {
         setPalettes(data);

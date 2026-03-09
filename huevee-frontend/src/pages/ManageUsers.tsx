@@ -31,7 +31,7 @@ function ManageUsers() {
       }
 
       try {
-        const res = await fetch('http://localhost:5000/api/users', {
+        const res = await fetch('http://13.219.3.29:8080/api/users', {
           headers: { Authorization: `Bearer ${token}` },
         });
         const data = await res.json();
@@ -52,7 +52,7 @@ function ManageUsers() {
     if (!confirm || !token) return;
 
     try {
-      const res = await fetch(`http://localhost:5000/api/users/${id}`, {
+      const res = await fetch(`http://13.219.3.29:8080/api/users/${id}`, {
         method: 'DELETE',
         headers: { Authorization: `Bearer ${token}` },
       });
@@ -108,7 +108,7 @@ function ManageUsers() {
     const token = getToken();
 
     try {
-      const res = await fetch(`http://localhost:5000/api/users/${selectedUserId}/change-password`, {
+      const res = await fetch(`http://13.219.3.29:8080/api/users/${selectedUserId}/change-password`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
