@@ -138,7 +138,7 @@ function ResetPassword() {
 
           <button
             type="submit"
-            className="bg-indigo-600 text-white py-2 rounded hover:bg-indigo-700 disabled:bg-gray-400 font-medium"
+            className="bg-indigo-600 text-white py-2 rounded-full hover:bg-indigo-700 disabled:bg-gray-400 font-medium"
             disabled={loading}
           >
             {loading ? 'Resetting...' : 'Reset Password'}
@@ -147,7 +147,7 @@ function ResetPassword() {
 
         <button
           onClick={() => navigate('/')}
-          className="w-full mt-4 p-2 text-indigo-600 border border-indigo-600 rounded hover:bg-indigo-50"
+          className="w-full mt-4 p-2 text-indigo-600 border border-indigo-600 rounded-full hover:bg-indigo-50"
         >
           Back to Home
         </button>

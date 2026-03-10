@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { getToken } from '../utils/auth';
+import PaletteCard from '../components/PaletteCard';
 
 type Palette = {
   id: number;
@@ -34,7 +35,7 @@ function Dashboard() {
   };
 
   fetchPalettes();
-}, []);
+}, [navigate]);
 
   const handleDelete = async (id: number) => {
     const token = getToken();
@@ -59,7 +60,7 @@ function Dashboard() {
             <h2 className="text-3xl font-bold text-indigo-600 mb-6">Your Palettes</h2>
             <button
                 onClick={() => navigate('/')}
-                className="px-4 py-2 bg-green-600 text-white rounded hover:bg-green-700"
+                className="px-4 py-2 bg-green-600 text-white rounded-full hover:bg-green-700"
                 >
                 Home
             </button>
@@ -71,30 +72,23 @@ function Dashboard() {
         <p>You haven't created any palettes yet.</p>
       ) : (
         palettes.map((palette) => (
-          <div key={palette.id} className="bg-white rounded shadow p-4 mb-4">
-            <h3 className="text-xl font-semibold">{palette.title}</h3>
-            <p className="text-sm text-gray-500">{palette.theme}</p>
-            <p className="mt-1 text-gray-700">{palette.description}</p>
-            <div className="flex mt-3">
-              {palette.colors.map((color, index) => (
-                <div
-                  key={index}
-                  className="w-8 h-8 rounded mr-2"
-                  style={{ backgroundColor: color.hex }}
-                  title={color.hex}
-                />
-              ))}
-            </div>
-            <div className="flex gap-3 mt-4">
+          <div key={palette.id}>
+            <PaletteCard
+              title={palette.title}
+              theme={palette.theme}
+              description={palette.description}
+              colors={palette.colors}
+            />
+            <div className="flex gap-3 mt-2">
               <button
                 onClick={() => navigate(`/edit/${palette.id}`)}
-                className="px-3 py-1 bg-blue-600 text-white rounded hover:bg-blue-700"
+                className="px-3 py-1 bg-blue-600 text-white rounded-full hover:bg-blue-700"
               >
                 Edit
               </button>
               <button
                 onClick={() => handleDelete(palette.id)}
-                className="px-3 py-1 bg-red-600 text-white rounded hover:bg-red-700"
+                className="px-3 py-1 bg-red-600 text-white rounded-full hover:bg-red-700"
               >
                 Delete
               </button>

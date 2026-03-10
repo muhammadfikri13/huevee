@@ -32,7 +32,7 @@ function Login() {
         <input
           type="email"
           placeholder="Email"
-          className="p-2 border rounded"
+          className="py-2 px-4 border rounded-full"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
           required
@@ -40,18 +40,21 @@ function Login() {
         <input
           type="password"
           placeholder="Password"
-          className="p-2 border rounded"
+          className="py-2 px-4 border rounded-full"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
           required
         />
         <button
           type="submit"
-          className="bg-indigo-600 text-white py-2 rounded hover:bg-indigo-700"
+          className="bg-indigo-600 text-white py-2 rounded-full hover:bg-indigo-700"
         >
           Login
         </button>
       </form>
+      <p className="mt-4">
+        Be;um punya akun? <a href="/register" className="text-indigo-600">Daftar di sini</a>
+      </p>
     </div>
   );
 }

@@ -94,7 +94,7 @@ function CreatePalette() {
                   />
                   <button
                     type="button"
-                    className="mt-2 bg-gray-200 px-2 py-1 rounded text-sm"
+                    className="mt-2 bg-gray-200 px-2 py-1 rounded-full text-sm"
                     onClick={() => setActivePicker(null)}
                   >
                     Close
@@ -107,7 +107,7 @@ function CreatePalette() {
 
         <button
           type="submit"
-          className="w-full bg-indigo-600 text-white py-2 rounded hover:bg-indigo-700"
+          className="w-full bg-indigo-600 text-white py-2 rounded-full hover:bg-indigo-700"
         >
           Submit Palette
         </button>

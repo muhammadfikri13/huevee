@@ -110,14 +110,14 @@ function EditPalette() {
 
         <button
           type="submit"
-          className="w-full bg-indigo-600 text-white py-2 rounded hover:bg-indigo-700"
+          className="w-full bg-indigo-600 text-white py-2 rounded-full hover:bg-indigo-700"
         >
           Update Palette
         </button>
         <button
             type="button"
             onClick={() => navigate('/dashboard')}
-            className="mb-4 px-4 py-2 bg-gray-300 text-gray-800 rounded hover:bg-gray-400"
+            className="mb-4 px-4 py-2 bg-gray-300 text-gray-800 rounded-full hover:bg-gray-400"
             >
             ← Back to Dashboard
         </button>
