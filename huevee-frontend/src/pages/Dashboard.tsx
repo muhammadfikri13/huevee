@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { getToken } from '../utils/auth';
+import { getToken, API_BASE_URL } from '../utils/auth';
 import PaletteCard from '../components/PaletteCard';
 
 type Palette = {
@@ -22,7 +22,7 @@ function Dashboard() {
     if (!token) return navigate('/login');
 
     try {
-      const res = await fetch('http://localhost:5000/api/palettes/user', {
+      const res = await fetch(`${API_BASE_URL}/api/palettes/user`, {
         headers: { Authorization: `Bearer ${token}` },
       });
       const data = await res.json();
@@ -42,7 +42,7 @@ function Dashboard() {
     const confirm = window.confirm('Are you sure you want to delete this palette?');
     if (!confirm || !token) return;
 
-    const res = await fetch(`http://localhost:5000/api/palettes/${id}`, {
+    const res = await fetch(`${API_BASE_URL}/api/palettes/${id}`, {
       method: 'DELETE',
       headers: { Authorization: `Bearer ${token}` },
     });

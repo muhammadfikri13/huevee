@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { getToken, isRoot } from '../utils/auth';
+import { getToken, isRoot, API_BASE_URL } from '../utils/auth';
 
 type User = {
   id: number;
@@ -31,7 +31,7 @@ function ManageUsers() {
       }
 
       try {
-        const res = await fetch('http://localhost:5000/api/users', {
+        const res = await fetch(`${API_BASE_URL}/api/users`, {
           headers: { Authorization: `Bearer ${token}` },
         });
         const data = await res.json();
@@ -52,7 +52,7 @@ function ManageUsers() {
     if (!confirm || !token) return;
 
     try {
-      const res = await fetch(`http://localhost:5000/api/users/${id}`, {
+      const res = await fetch(`${API_BASE_URL}/api/users/${id}`, {
         method: 'DELETE',
         headers: { Authorization: `Bearer ${token}` },
       });
@@ -108,7 +108,7 @@ function ManageUsers() {
     const token = getToken();
 
     try {
-      const res = await fetch(`http://localhost:5000/api/users/${selectedUserId}/change-password`, {
+      const res = await fetch(`${API_BASE_URL}/api/users/${selectedUserId}/change-password`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

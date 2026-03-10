@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { getToken } from '../utils/auth';
+import { getToken, API_BASE_URL } from '../utils/auth';
 import { ChromePicker } from 'react-color';
 import type { ColorResult } from 'react-color';
 
@@ -28,7 +28,7 @@ function CreatePalette() {
       })),
     };
 
-    const res = await fetch('http://localhost:5000/api/palettes', {
+    const res = await fetch(`${API_BASE_URL}/api/palettes`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
-import { getToken } from '../utils/auth';
+import { getToken, API_BASE_URL } from '../utils/auth';
 
 function EditPalette() {
   const { id } = useParams();
@@ -16,7 +16,7 @@ function EditPalette() {
     if (!token) return navigate('/login');
 
     try {
-      const res = await fetch(`http://localhost:5000/api/palettes/${id}`, {
+      const res = await fetch(`${API_BASE_URL}/api/palettes/${id}`, {
         headers: { Authorization: `Bearer ${token}` },
       });
       const data = await res.json();
@@ -49,7 +49,7 @@ function EditPalette() {
       })),
     };
 
-    const res = await fetch(`http://localhost:5000/api/palettes/${id}`, {
+    const res = await fetch(`${API_BASE_URL}/api/palettes/${id}`, {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json',
