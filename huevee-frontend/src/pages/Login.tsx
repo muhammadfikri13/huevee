@@ -10,7 +10,7 @@ function Login() {
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault(); // ⛔ Hindari reload halaman
 
-    const res = await fetch('http://13.219.3.29:8080/api/auth/login', {
+    const res = await fetch('https://avntz.world/api/auth/login', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ email, password }),

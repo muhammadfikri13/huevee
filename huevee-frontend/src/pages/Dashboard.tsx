@@ -21,7 +21,7 @@ function Dashboard() {
     if (!token) return navigate('/login');
 
     try {
-      const res = await fetch('http://13.219.3.29:8080/api/palettes/user', {
+      const res = await fetch('https://avntz.world/api/palettes/user', {
         headers: { Authorization: `Bearer ${token}` },
       });
       const data = await res.json();
@@ -41,7 +41,7 @@ function Dashboard() {
     const confirm = window.confirm('Are you sure you want to delete this palette?');
     if (!confirm || !token) return;
 
-    const res = await fetch(`http://13.219.3.29:8080/api/palettes/${id}`, {
+    const res = await fetch(`https://avntz.world/api/palettes/${id}`, {
       method: 'DELETE',
       headers: { Authorization: `Bearer ${token}` },
     });

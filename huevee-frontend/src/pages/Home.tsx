@@ -19,7 +19,7 @@ function Home() {
   const rootUser = isRoot();
 
   useEffect(() => {
-    fetch('http://13.219.3.29:8080/api/palettes')
+    fetch('https://avntz.world/api/palettes')
       .then((res) => res.json())
       .then((data) => {
         setPalettes(data);
@@ -36,7 +36,7 @@ function Home() {
     const confirm = window.confirm('Are you sure you want to delete this palette?');
     if (!confirm || !token) return;
 
-    const res = await fetch(`http://localhost:5000/api/palettes/${id}`, {
+    const res = await fetch(`https://avntz.world/api/palettes/${id}`, {
       method: 'DELETE',
       headers: { Authorization: `Bearer ${token}` },
     });

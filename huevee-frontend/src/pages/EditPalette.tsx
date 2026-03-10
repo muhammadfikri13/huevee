@@ -16,7 +16,7 @@ function EditPalette() {
     if (!token) return navigate('/login');
 
     try {
-      const res = await fetch(`http://13.219.3.29:8080/api/palettes/${id}`, {
+      const res = await fetch(`https://avntz.world/api/palettes/${id}`, {
         headers: { Authorization: `Bearer ${token}` },
       });
       const data = await res.json();
@@ -49,7 +49,7 @@ function EditPalette() {
       })),
     };
 
-    const res = await fetch(`http://13.219.3.29:8080/api/palettes/${id}`, {
+    const res = await fetch(`https://avntz.world/api/palettes/${id}`, {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json',
