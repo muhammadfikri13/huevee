@@ -92,21 +92,22 @@ function EditPalette() {
         />
         <div className="grid grid-cols-5 gap-2">
           {colors.map((hex, index) => (
-            <input
-              key={index}
-              type="text"
-              placeholder="#HEX"
-              className="p-2 border rounded text-center"
-              value={hex}
-              onChange={(e) => {
-                const newColors = [...colors];
-                newColors[index] = e.target.value;
-                setColors(newColors);
-              }}
-              required
-            />
+            <div key={index} className="flex flex-col items-center">
+              {/* Color picker */}
+              <input
+                type="color"
+                value={hex}
+                onChange={(e) => {
+                  const newColors = [...colors];
+                  newColors[index] = e.target.value;
+                  setColors(newColors);
+                }}
+                className="w-12 h-8 cursor-pointer"
+              />
+            </div>
           ))}
         </div>
+
         <button
           type="submit"
           className="w-full bg-indigo-600 text-white py-2 rounded hover:bg-indigo-700"
