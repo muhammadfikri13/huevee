@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { getToken, isRoot } from '../utils/auth';
+import { getToken, isRoot, API_BASE_URL } from '../utils/auth';
 
 type User = {
   id: number;
@@ -31,7 +31,7 @@ function ManageUsers() {
       }
 
       try {
-        const res = await fetch('https://avntz.world/api/users', {
+        const res = await fetch(`${API_BASE_URL}/api/users`, {
           headers: { Authorization: `Bearer ${token}` },
         });
         const data = await res.json();
@@ -52,7 +52,7 @@ function ManageUsers() {
     if (!confirm || !token) return;
 
     try {
-      const res = await fetch(`https://avntz.world/api/users/${id}`, {
+      const res = await fetch(`${API_BASE_URL}/api/users/${id}`, {
         method: 'DELETE',
         headers: { Authorization: `Bearer ${token}` },
       });
@@ -108,7 +108,7 @@ function ManageUsers() {
     const token = getToken();
 
     try {
-      const res = await fetch(`https://avntz.world/api/users/${selectedUserId}/change-password`, {
+      const res = await fetch(`${API_BASE_URL}/api/users/${selectedUserId}/change-password`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -139,7 +139,7 @@ function ManageUsers() {
         <h2 className="text-3xl font-bold text-indigo-600">👥 Manage Users</h2>
         <button
           onClick={() => navigate('/')}
-          className="px-4 py-2 bg-gray-600 text-white rounded hover:bg-gray-700"
+          className="px-4 py-2 bg-gray-600 text-white rounded-full hover:bg-gray-700"
         >
           Back
         </button>
@@ -170,7 +170,7 @@ function ManageUsers() {
                   <td className="px-6 py-4 text-sm">{user.email}</td>
                   <td className="px-6 py-4 text-sm">
                     <span
-                      className={`px-3 py-1 rounded text-white text-xs font-semibold ${
+                      className={`px-3 py-1 rounded-full text-white text-xs font-semibold ${
                         user.role === 'root' ? 'bg-red-600' : 'bg-green-600'
                       }`}
                     >
@@ -185,13 +185,13 @@ function ManageUsers() {
                       <>
                         <button
                           onClick={() => openPasswordModal(user.id)}
-                          className="px-3 py-1 rounded text-white text-sm bg-blue-600 hover:bg-blue-700"
+                          className="px-3 py-1 rounded-full text-white text-sm bg-blue-600 hover:bg-blue-700"
                         >
                           🔑 Change Password
                         </button>
                         <button
                           onClick={() => handleDeleteUser(user.id, user.username)}
-                          className="px-3 py-1 rounded text-white text-sm bg-red-600 hover:bg-red-700"
+                          className="px-3 py-1 rounded-full text-white text-sm bg-red-600 hover:bg-red-700"
                         >
                           🗑️ Delete
                         </button>
@@ -259,14 +259,14 @@ function ManageUsers() {
               <div className="flex gap-2 pt-4">
                 <button
                   onClick={handleChangePassword}
-                  className="flex-1 bg-blue-600 text-white py-2 rounded hover:bg-blue-700 disabled:bg-gray-400 font-medium"
+                  className="flex-1 bg-blue-600 text-white py-2 rounded-full hover:bg-blue-700 disabled:bg-gray-400 font-medium"
                   disabled={changingPassword}
                 >
                   {changingPassword ? 'Changing...' : 'Change Password'}
                 </button>
                 <button
                   onClick={closePasswordModal}
-                  className="flex-1 bg-gray-400 text-white py-2 rounded hover:bg-gray-500 font-medium"
+                  className="flex-1 bg-gray-400 text-white py-2 rounded-full hover:bg-gray-500 font-medium"
                   disabled={changingPassword}
                 >
                   Cancel
