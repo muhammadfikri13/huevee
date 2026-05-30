@@ -33,7 +33,7 @@ function Register() {
   };
 
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100">
+    <div className="flex flex-col items-center justify-center min-h-screen animate-fadeInUp">
       <h2 className="text-2xl font-bold mb-4">Register</h2>
       <form onSubmit={handleRegister} className="flex flex-col space-y-3 w-80">
         <input

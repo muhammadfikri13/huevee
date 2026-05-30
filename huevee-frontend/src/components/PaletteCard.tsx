@@ -29,9 +29,9 @@ const PaletteCard: React.FC<PaletteProps> = ({ title, theme, description, colors
   };
 
   return (
-    <div className={"bg-white rounded-lg shadow-md p-4 mb-4 flex flex-col transition-all duration-300 hover:shadow-lg hover:scale-105 cursor-pointer " + (expanded ? '' : 'h-30') }>
+    <div className={"bg-white/30 backdrop-blur-lg border border-white/30 rounded-xl shadow-md p-4 mb-4 flex flex-col transition-all duration-300 hover:shadow-lg hover:scale-105 cursor-pointer " + (expanded ? '' : 'h-30') }>
       <div>
-        <h2 className="text-xl font-semibold">{title}</h2>
+        <h2 className="text-lg font-medium">{title}</h2>
         <p className="text-sm text-gray-500">{theme}</p>
         <p className="mt-2 text-gray-700">
           {displayText}
@@ -72,7 +72,7 @@ const PaletteCard: React.FC<PaletteProps> = ({ title, theme, description, colors
         </div>
         <button
           onClick={handleCopyAllHex}
-          className="ml-2 p-1.5 rounded text-gray-600 hover:bg-gray-200 transition-all duration-200"
+          className="ml-2 p-.0.5 rounded text-gray-600 hover:bg-gray-200 transition-all duration-200"
           title="Copy all hex codes"
         >
           {copiedAllHex ? (

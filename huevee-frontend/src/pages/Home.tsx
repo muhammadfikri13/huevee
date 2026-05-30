@@ -49,10 +49,10 @@ function Home() {
   };
 
   return (
-    <div className="min-h-screen bg-gray-100 p-6">
+    <div className="min-h-screen p-6">
       <div className="flex justify-between items-center mb-6">
-        <div>
-          <h1 className="text-3xl font-bold text-indigo-600">Huevee Palettes</h1>
+        <div className="flex items-center gap-4">
+          <img src="/huevee.svg" alt="Hueve" className="h-8 w-auto object-contain animate-fadeInUp" />
           {rootUser && <p className="text-sm text-red-600 font-semibold mt-1">🔐 Root Admin Mode</p>}
         </div>
         <div className="space-x-4">
@@ -94,8 +94,8 @@ function Home() {
       </div>
       
       {!loggedIn && (
-        <div className="bg-gradient-to-r from-indigo-600 to-purple-600 rounded-lg shadow-lg p-12 mb-8 text-white">
-          <h2 className="text-4xl font-bold mb-4">Welcome to Huevee</h2>
+        <div className="bg-gradient-to-r from-indigo-600 to-purple-600 rounded-2xl shadow-2xl p-12 mb-8 text-white animate-fadeInUp">
+          <h2 className="text-4xl font-bold mb-4">Hello! Ready to colorize?</h2>
           <p className="text-lg mb-6 max-w-2xl">
             Discover and create beautiful color palettes for your next design project. Explore thousands of carefully curated palettes or create your own masterpiece.
           </p>
@@ -121,7 +121,7 @@ function Home() {
       ) : palettes.length === 0 ? (
         <p>No palettes found.</p>
       ) : (
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 gap-y-2">          {palettes.map((palette) => (
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 gap-y-2 rounded-2xl">          {palettes.map((palette) => (
             <div key={palette.id}>
               <PaletteCard
                 title={palette.title}
@@ -132,7 +132,7 @@ function Home() {
               {rootUser && (
                 <button
                   onClick={() => handleRootDelete(palette.id)}
-                  className="mt-3 px-3 py-1 bg-red-600 text-white rounded-full hover:bg-red-700 text-sm"
+                  className="mb-7 px-3 py-1 text-red-600 rounded-full hover:bg-red-700 hover:text-white transition-all text-sm"
                 >
                   🗑️ Delete (Admin)
                 </button>

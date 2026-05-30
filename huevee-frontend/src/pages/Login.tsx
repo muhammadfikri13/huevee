@@ -25,8 +25,9 @@ function Login() {
     }
   };
 
-  return (
-    <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100">
+  return (    
+    <div className="flex flex-col items-center justify-center min-h-screen animate-fadeInUp">
+      
       <h2 className="text-2xl font-bold mb-4">Login</h2>
       <form onSubmit={handleLogin} className="flex flex-col space-y-3 w-80">
         <input
@@ -53,7 +54,10 @@ function Login() {
         </button>
       </form>
       <p className="mt-4">
-        Be;um punya akun? <a href="/register" className="text-indigo-600">Daftar di sini</a>
+        Belum punya akun? <a href="/register" className="text-indigo-600">Daftar di sini</a>
+      </p>
+      <p>
+        <a href="/" className="text-indigo-300">🔙</a>
       </p>
     </div>
   );

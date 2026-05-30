@@ -1,3 +1,18 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer base {
+	html, body {
+		font-family: 'LINE Seed JP', ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+	}
+	
+	/* Hide scrollbar while keeping scroll functionality */
+	html {
+		scrollbar-width: none; /* Firefox */
+	}
+	
+	html::-webkit-scrollbar {
+		display: none; /* Chrome, Safari, Opera */
+	}
+}
