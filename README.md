@@ -13,7 +13,7 @@ All of the services use free-tier resources.
 
 ### How to run this app?
 1. Make sure you have accounts for Vercel and Render.
-2. Create a new PostgreSQL database in Render and save the hostname and external database URL of the database.
+2. Create a new PostgreSQL database in Render and save the hostname, DB name, password, and external database URL of the database.
 3. Since in the free tier we can not run sql query, so we need to remote into it from outside. In this case, I'm using TablePlus.
 4. Install TablePlus and remote into the database using the external database URL.
 5. Select SQL, then create 3 tables: users, palettes, and colors using this query.
@@ -43,3 +43,25 @@ All of the services use free-tier resources.
       position INTEGER
     );
    ```
+6. Now, create a new web service for our backend and link it to our repository. Don't forget to set the Root Directory to huevee-backend.
+7. In the Build section, set the Build Command: npm install
+8. In the Deploy section, set the Start Command: huevee-backend/ $ node server.js
+9. Set an environment variable
+   ```
+   DB_HOST = (the hostname of our database in Render)
+   DB_NAME = (the name of the database)
+   DB_USER = the user we created in the database
+   DB_PASS = the password
+   NODE_ENV = production
+   ```
+10. Redeploy the web service; when it's ready, test the endpoint in Postman.
+11. Create a new project in Vercel and import our repository.
+12. Select the Vite framework and set Root Directory as huevee-frontend
+13. Set the Build Command: npm run build
+14. Add an environment variable and deploy.
+    ```
+    VITE_API_URL = https://huevee-backend.onrender.com
+    ```
+    DONE
+    
+   
