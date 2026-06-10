@@ -1,21 +1,50 @@
 ## Welcome to Huevee!
-<img width="1917" height="963" alt="image" src="https://github.com/user-attachments/assets/138062d9-467d-497e-8c7d-6f391de489b9" />
+<img src="https://github.com/user-attachments/assets/138062d9-467d-497e-8c7d-6f391de489b9" />
 
-Huevee is a web app that lets you share your palette ideas. 
-Built with React, Express, and PostgreSQL.
-Deployed on Vercel and Render.
-All of the services use free-tier resources.
+- Huevee is a web app that lets you share your palette ideas. 
+- Built with React, Express, and PostgreSQL.
+- Deployed on Vercel and Render.
+- All of the services use free-tier resources.
 
-### What can Huevee do?
-- CRUD palettes (Create, Read, Update, and Delete) operations.
-- Every regular user can only manage their own palettes.
-- The root user can delete any palette, reset a regular user's password, and delete a regular user.
+### Architecture
+
+React (Frontend)
+<br>      ↓
+<br>Express API (Backend)
+<br>      ↓
+<br>PostgreSQL Database
+
+### Tech Stack
+
+Frontend:
+- React
+- Vite
+- Tailwind CSS
+
+Backend:
+- Express.js
+- Node.js
+
+Database:
+- PostgreSQL
+
+Deployment:
+- Vercel
+- Render
+
+### Features
+- User authentication
+- Role-based authorization
+- Create, edit, and delete color palettes
+- Store palette data in PostgreSQL
+- Responsive UI
+- Admin dashboard capabilities
 
 ### How to run this app?
 1. Make sure you have accounts for Vercel and Render.
 2. Create a new PostgreSQL database in Render and save the hostname, DB name, password, and external database URL of the database.
-3. Since in the free tier we can not run sql query, so we need to remote into it from outside. In this case, I'm using TablePlus.
-4. Install TablePlus and remote into the database using the external database URL.
+3. Since Render's free tier does not provide direct SQL access, we need to connect from an external database client such as TablePlus.
+4. Install TablePlus and connect into the database using the external database URL.
 5. Select SQL, then create 3 tables: users, palettes, and colors using this query.
    ```
     CREATE TABLE users (
@@ -62,6 +91,23 @@ All of the services use free-tier resources.
     ```
     VITE_API_URL = https://huevee-backend.onrender.com
     ```
-    DONE
+15. The application should now be successfully deployed.
     
-   
+
+### Documentations
+<img src="screenshots/login.png">
+<p align="center">Login Page</p>
+<br>
+<img src="screenshots/register.png">
+<p align="center">Register Page</p>
+<br>
+<img src="screenshots/create.png">
+<p align="center">Palette creation page</p>
+<br>
+<img src="screenshots/home.png">
+<p align="center">Palette listing page</p>
+<br>
+<img src="screenshots/admin.png">
+<p align="center">Admin dashboard</p>
+
+
